@@ -120,3 +120,54 @@
 | **Pipeline Code Validation**    | Code validation happens during pipeline execution. It's like checking for mistakes in a recipe while cooking the dish. | Code validation happens when the pipeline is loaded into Jenkins. Errors are detected upfront before running the pipeline. It's like having someone review your recipe for mistakes before you start cooking. |
 | **Restart from Stage**          | Not supported directly.                                | Supported.                                        |
 | **Skipping Stages**             | No built-in support for skipping stages. All stages will be executed sequentially. | Supports skipping stages using the `when` directive. Allows conditional skipping of stages based on specified conditions. |
+
+# Triggering Jenkins Jobs
+
+## Q. What are the different ways to trigger a Jenkins job?
+
+**Ans:**
+
+### **Manual Triggering:**
+- **Build Now:** Manually trigger a job by clicking the "Build Now" button in the Jenkins UI.
+
+### **Automatic Triggering:**
+
+1. **Source Code Management (SCM) Polling:**
+   - Jenkins can automatically trigger jobs by polling the source code repository (e.g., Git) for changes.
+   - **Setup:** Check the "Poll SCM" option in the job configuration and specify the schedule using cron-like syntax (e.g., `* * * * *`).
+   - **Behavior:** Jenkins will periodically check the repository for any new changes. If changes are detected, the job is triggered; otherwise, nothing happens.
+
+2. **Webhooks from Version Control Systems (e.g., GitHub):**
+   - Jenkins can automatically trigger jobs via webhooks configured in your version control system like GitHub.
+   - **Setup:** Configure a webhook in GitHub and check the "GitHub Webhook trigger" option under "Build Trigger" in Jenkins.
+   - **Behavior:** This option triggers the pipeline job whenever a new commit is made to the GitHub repository.
+
+3. **Scheduled Triggering with Cron Syntax:**
+   - Jenkins can automatically trigger jobs based on a defined schedule, regardless of changes in the repository.
+   - **Via Build Periodically:**
+     - **Setup:** Check the "Build periodically" option and provide a cron schedule (e.g., `H/5 * * * *`).
+     - **Behavior:** Jenkins triggers the job at the specified times, without checking for changes in the repository. The job runs on the schedule no matter what.
+
+4. **Jenkins REST API:**
+   - Jenkins jobs can be triggered remotely using the Jenkins REST API.
+   - **Usage:** This method is useful for integrating Jenkins triggers into other applications or systems.
+
+5. **Triggering from Other Jobs (as part of a pipeline):**
+   - Jobs can be triggered as part of a larger Jenkins pipeline, often to coordinate multiple builds or steps.
+   - **Setup:** This is typically done within a `Jenkinsfile`, where downstream jobs are triggered as part of the pipeline workflow.
+
+### **Automatic Triggering Detailed Explanation:**
+
+- **Via Webhook:**
+  - **Setup:** Configure a webhook in GitHub, and then check the "GitHub Webhook trigger" under the "Build Trigger" option in Jenkins.
+  - **Use Case:** This option is used when you want your pipeline job to trigger automatically whenever a new commit is made to the GitHub repository.
+
+- **Via Poll SCM:**
+  - **Setup:** Check the "Poll SCM" option and provide a schedule using cron syntax, such as `* * * * *`.
+  - **Use Case:** This option is useful when you want Jenkins to check the GitHub repository at regular intervals. If new changes are found, the job triggers; if not, nothing happens.
+
+- **Via Build Periodically:**
+  - **Setup:** Check the "Build periodically" option and provide a cron schedule.
+  - **Use Case:** This option triggers the job at the specified time intervals, regardless of whether there are new changes in the repository. The job runs according to the schedule, even if the code hasn't changed.
+
+By utilizing these triggering methods, Jenkins provides flexibility in how and when jobs are executed, ensuring that your CI/CD pipeline can be as responsive or as scheduled as needed.
