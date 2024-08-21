@@ -170,4 +170,16 @@
   - **Setup:** Check the "Build periodically" option and provide a cron schedule.
   - **Use Case:** This option triggers the job at the specified time intervals, regardless of whether there are new changes in the repository. The job runs according to the schedule, even if the code hasn't changed.
 
-By utilizing these triggering methods, Jenkins provides flexibility in how and when jobs are executed, ensuring that your CI/CD pipeline can be as responsive or as scheduled as needed.
+# Common Jenkins Environment Variables
+
+## Q. What are some common Jenkins environment variables?
+
+**Answer:** Common Jenkins environment variables include:
+
+- **`BUILD_ID`**: The unique identifier for the current build.
+- **`BUILD_NUMBER`**: The number of the current build.
+- **`JOB_NAME`**: The name of the job.
+- **`WORKSPACE`**: The path to the workspace directory.
+- **`GIT_COMMIT`**: The commit ID of the current Git revision.
+- **`JENKINS_HOME`**: The path to Jenkins’ home directory.
+
