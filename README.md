@@ -183,3 +183,20 @@
 - **`GIT_COMMIT`**: The commit ID of the current Git revision.
 - **`JENKINS_HOME`**: The path to Jenkins’ home directory.
 
+## Q. What are agents or nodes in Jenkins?
+
+**Answer:** 
+Agents or nodes in Jenkins are computers or machines that Jenkins uses to run jobs (builds, tests, etc.). The main Jenkins server is called the "master," and it controls the scheduling of jobs. The agents (or nodes) are the actual machines that do the work. You can have multiple agents to distribute the workload, which helps in speeding up the build process and managing jobs more efficiently.
+
+## Q. What is the purpose of the workspace in Jenkins?
+
+**Answer:**
+The workspace in Jenkins is the directory on the agent (or node) where Jenkins stores all the files related to a specific job, including the source code, build outputs, and other temporary files. Each job has its own workspace, and it is used to perform all the steps of the job, such as compiling code, running tests, and packaging applications.
+
+## Q. How do you back up and restore Jenkins?
+
+**Answer:**
+
+- **Backup Jenkins:** To back up Jenkins, you need to save the `JENKINS_HOME` directory. This directory contains all the configurations, job data, plugins, and build history. You can either manually copy this directory to a safe location or use backup plugins like the ThinBackup plugin to automate the process.
+
+- **Restore Jenkins:** To restore Jenkins, simply replace the current `JENKINS_HOME` directory with your backup copy and restart Jenkins. This will bring back all your job configurations, build history, and settings as they were at the time of the backup.
